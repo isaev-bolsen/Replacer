@@ -11,9 +11,9 @@ namespace Replacer
     {
     class FileProcessor
         {
-        private Dictionary<string, string> Fields;
+        private Dictionary<string, string> Fields = new Dictionary<string, string>();
         private Application wordapp = new Application();
-        private Regex regex = new Regex("{}");
+        private Regex regex = new Regex("{[\\w]+}");
 
         public void AddFiles(IEnumerable<string> paths)
             {
@@ -22,9 +22,7 @@ namespace Replacer
                 var doc = wordapp.Documents.Open(path);
                 foreach (Range sent in doc.Sentences)
                     foreach (Match match in regex.Matches(sent.Text))
-                        {
-
-                        }
+                        if (!Fields.ContainsKey(match.Value)) Fields.Add(match.Value, string.Empty);
                 }
             }
         }
