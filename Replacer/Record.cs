@@ -17,10 +17,18 @@ namespace Replacer
     {
     class Record : StackPanel
         {
+        private TextBox TB = new TextBox() { MinWidth = 100 };
+
         public Record(string key)
             {
             this.Orientation = Orientation.Horizontal;
-            this.Children.Add(new Label() { Content = key });
+            this.Children.Add(new Label() { Content = key, MinWidth = 100 });
+            this.Children.Add(TB);
+            }
+
+        public string DesiredValue
+            {
+            get { return TB.Text; }
             }
         }
     }
