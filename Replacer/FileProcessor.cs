@@ -11,20 +11,29 @@ namespace Replacer
     {
     class FileProcessor
         {
-        private Dictionary<string, string> Fields = new Dictionary<string, string>();
-        private Application wordapp = new Application();
+        private Lister Lister;
         private Regex regex = new Regex("{[\\w]+}");
+        private HashSet<string> CollectedFiles = new HashSet<string>();
 
-        public async void ScanFiles(IEnumerable<string> paths)
+        public FileProcessor(Lister lister)
             {
-            foreach (string path in paths)
+            Lister = lister;
+            }
+
+        public async void ScanFiles(IEnumerable<string> Paths)
+            {
+            foreach (string path in Paths)
                 {
+                if (CollectedFiles.Contains(path)) continue;
+                Application wordapp = new Application();
+
+                CollectedFiles.Add(path);
                 var doc = wordapp.Documents.Open(path);
                 foreach (Range sent in doc.Sentences)
                     foreach (Match match in regex.Matches(sent.Text))
-                        if (!Fields.ContainsKey(match.Value))
-                            Fields.Add(match.Value, string.Empty);
+                        Lister.addKey(match.Value);
                 doc.Close(false);
+                wordapp.Quit();
                 }
             }
         }

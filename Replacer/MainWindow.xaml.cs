@@ -28,11 +28,12 @@ namespace Replacer
             CheckFileExists = true
         };
 
-        private FileProcessor FileProcessor = new FileProcessor();
+        private FileProcessor FileProcessor ;
 
         public MainWindow()
             {
             InitializeComponent();
+            FileProcessor = new FileProcessor(new Lister(ItemsList));
             }
 
         private void OpenFiles(object sender, RoutedEventArgs e)
