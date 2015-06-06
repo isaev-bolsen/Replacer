@@ -15,14 +15,16 @@ namespace Replacer
         private Application wordapp = new Application();
         private Regex regex = new Regex("{[\\w]+}");
 
-        public void AddFiles(IEnumerable<string> paths)
+        public void ScanFiles(IEnumerable<string> paths)
             {
             foreach (string path in paths)
                 {
                 var doc = wordapp.Documents.Open(path);
                 foreach (Range sent in doc.Sentences)
                     foreach (Match match in regex.Matches(sent.Text))
-                        if (!Fields.ContainsKey(match.Value)) Fields.Add(match.Value, string.Empty);
+                        if (!Fields.ContainsKey(match.Value))
+                            Fields.Add(match.Value, string.Empty);
+                doc.Close(false);
                 }
             }
         }
