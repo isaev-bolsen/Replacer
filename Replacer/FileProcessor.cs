@@ -25,8 +25,8 @@ namespace Replacer
             foreach (string path in Paths)
                 {
                 if (CollectedFiles.Contains(path)) continue;
-                Application wordapp = new Application();
 
+                Application wordapp = new Application();
                 CollectedFiles.Add(path);
                 var doc = wordapp.Documents.Open(path);
                 foreach (Range sent in doc.Sentences)

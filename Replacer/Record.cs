@@ -20,6 +20,7 @@ namespace Replacer
         public Record(string key)
             {
             this.Orientation = Orientation.Horizontal;
+            this.Children.Add(new Label() { Content = key });
             }
         }
     }

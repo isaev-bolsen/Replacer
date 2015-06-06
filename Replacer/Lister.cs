@@ -18,7 +18,7 @@ namespace Replacer
     class Lister
         {
         private StackPanel Panel;
-        private Dictionary<string, Record> Records=new Dictionary<string,Record>();
+        private Dictionary<string, Record> Records = new Dictionary<string, Record>();
 
         public Lister(StackPanel panel)
             {
@@ -28,7 +28,7 @@ namespace Replacer
         public void addKey(string key)
             {
             if (Records.ContainsKey(key)) return;
-            var record=new Record(key);
+            var record = new Record(key);
             Panel.Children.Add(record);
             Records.Add(key, record);
             }
