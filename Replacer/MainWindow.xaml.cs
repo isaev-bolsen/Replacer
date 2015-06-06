@@ -28,7 +28,9 @@ namespace Replacer
             CheckFileExists = true
         };
 
-        private FileProcessor FileProcessor ;
+        private System.Windows.Forms.FolderBrowserDialog SetDirectoryDlg = new System.Windows.Forms.FolderBrowserDialog();
+
+        private FileProcessor FileProcessor;
 
         public MainWindow()
             {
@@ -38,8 +40,14 @@ namespace Replacer
 
         private void OpenFiles(object sender, RoutedEventArgs e)
             {
-            OpenFileDlg.ShowDialog(this);
-            FileProcessor.ScanFiles(OpenFileDlg.FileNames);
+            var dlgRes = OpenFileDlg.ShowDialog(this);
+            if (!dlgRes.HasValue) return;
+            if (dlgRes.Value) FileProcessor.ScanFiles(OpenFileDlg.FileNames);
+            }
+
+        private void Flush(object sender, RoutedEventArgs e)
+            {
+            if (SetDirectoryDlg.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
             }
         }
     }
