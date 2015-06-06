@@ -15,7 +15,7 @@ namespace Replacer
         private Application wordapp = new Application();
         private Regex regex = new Regex("{[\\w]+}");
 
-        public void ScanFiles(IEnumerable<string> paths)
+        public async void ScanFiles(IEnumerable<string> paths)
             {
             foreach (string path in paths)
                 {
