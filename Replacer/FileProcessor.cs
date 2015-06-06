@@ -53,6 +53,7 @@ namespace Replacer
             foreach (var file in CollectedFiles)
                 {
                 string DestPath=Path.Combine(resultPath, Path.GetFileName(file));
+                if (File.Exists(DestPath)) File.Delete(DestPath);
                 File.Copy(file, DestPath);
                 await FlushFile(DestPath, Values);
                 }

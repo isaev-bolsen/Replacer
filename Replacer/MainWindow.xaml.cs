@@ -49,6 +49,7 @@ namespace Replacer
             {
             if (SetDirectoryDlg.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
             FileProcessor.Flush(SetDirectoryDlg.SelectedPath);
+            Close();
             }
         }
     }
