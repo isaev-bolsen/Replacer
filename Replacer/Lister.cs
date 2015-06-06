@@ -33,9 +33,11 @@ namespace Replacer
             Records.Add(key, record);
             }
 
-        //public Dictionary<string, string> GetInput()
-        //    {
-
-        //    }
+        public Dictionary<string, string> GetInput()
+            {
+            Dictionary<string, string> toreturn = new Dictionary<string, string>();
+            foreach (var pair in Records) toreturn.Add(pair.Key, pair.Value.DesiredValue);
+            return toreturn;
+            }
         }
     }
