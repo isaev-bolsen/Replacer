@@ -38,7 +38,7 @@ namespace Replacer
         private void OpenFiles(object sender, RoutedEventArgs e)
             {
             OpenFileDlg.ShowDialog(this);
-            FileProcessor.SetFiles(OpenFileDlg.FileNames);
+            FileProcessor.AddFiles(OpenFileDlg.FileNames);
             }
         }
     }

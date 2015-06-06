@@ -4,16 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.Office.Interop.Word;
+using System.Text.RegularExpressions;
 
 namespace Replacer
     {
     class FileProcessor
         {
-        private IEnumerable<FileInfo> Files;
+        private Dictionary<string, string> Fields;
+        private Application wordapp = new Application();
+        private Regex regex = new Regex("{}");
 
-        public void SetFiles(IEnumerable<string> paths)
+        public void AddFiles(IEnumerable<string> paths)
             {
-            Files = paths.Select(p => new FileInfo(p));
+            foreach (string path in paths)
+                {
+                var doc = wordapp.Documents.Open(path);
+                foreach (Range sent in doc.Sentences)
+                    foreach (Match match in regex.Matches(sent.Text))
+                        {
+
+                        }
+                }
             }
         }
     }
+    
