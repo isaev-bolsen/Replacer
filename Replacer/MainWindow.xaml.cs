@@ -48,6 +48,7 @@ namespace Replacer
         private void Flush(object sender, RoutedEventArgs e)
             {
             if (SetDirectoryDlg.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+            FileProcessor.Flush(SetDirectoryDlg.SelectedPath);
             }
         }
     }
